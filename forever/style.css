@@ -1,0 +1,290 @@
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #ffeef2;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  position: relative;
+  z-index: 5;
+  overflow: hidden;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.hidden {
+  display: none;
+}
+
+h1 {
+  color: #ff5c8a;
+}
+
+.subtext {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.capybara {
+  width: 180px;
+  margin: 20px 0;
+  animation: breath 3s ease-in-out infinite;
+}
+
+@keyframes breath {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    
+    }
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#yesBtn {
+  background: #ff5c8a;
+  color: white;
+}
+
+#noBtn {
+  background: #ddd;
+}
+
+.poem {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444;
+  margin-top: 20px;
+}
+
+.footer {
+  margin-top: 20px;
+  color: #ff5c8a;
+  font-style: italic;
+}
+/* Floating hearts */
+.heart {
+  position: fixed;
+  font-size: 20px;
+  animation: floatUp 3s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-300px);
+    opacity: 0;
+  }
+}
+
+/* Smooth fade transition */
+.fade-out {
+  animation: fadeOut 0.8s forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* Night mode */
+.night {
+  background: radial-gradient(circle at center, #2a1f2f 0%, #140d18 100%);
+  transition: background 1.5s ease;
+}
+
+/* Glow effect on poem container */
+.night .container {
+  background: rgba(255, 240, 245, 0.08);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 40px rgba(255, 105, 180, 0.3);
+  color: #fff;
+}
+
+/* Adjust poem text in night */
+.night .poem {
+  color: #f8e9f0;
+}
+
+.night h1 {
+  color: #ff9ecf;
+}
+/* Flower growth */
+.flower {
+  position: absolute;
+  bottom: -200px;
+  left: 50%;
+  width: 4px;
+  height: 0;
+  background: linear-gradient(to top, #4caf50, #81c784);
+  transform: translateX(-50%);
+  animation: growStem 4s ease forwards;
+}
+
+@keyframes growStem {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 300px;
+  }
+}
+
+/* Spiral petals */
+.flower::before {
+  content: "🌸";
+  position: absolute;
+  top: -30px;
+  left: -18px;
+  font-size: 30px;
+  animation: bloom 4s ease forwards;
+  opacity: 0;
+}
+
+@keyframes bloom {
+  70% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* Flower field */
+.flower-field {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Individual flower stem */
+.flower-stem {
+  position: absolute;
+  bottom: -150px;
+  width: 3px;
+  height: 0;
+  background: linear-gradient(to top, #2e7d32, #66bb6a);
+  animation: grow 5s ease forwards;
+}
+
+/* Flower head */
+.flower-stem::after {
+  content: "🌸";
+  position: absolute;
+  top: -25px;
+  left: -15px;
+  font-size: 24px;
+  opacity: 0;
+  animation: bloom 5s ease forwards;
+}
+
+/* Grow animation */
+@keyframes grow {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 250px;
+  }
+}
+
+/* Bloom timing */
+@keyframes bloom {
+  70% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Spiral sway effect */
+@keyframes sway {
+  0% { transform: rotate(-2deg); }
+  50% { transform: rotate(3deg); }
+  100% { transform: rotate(-2deg); }
+}
+/* Sky layer */
+.sky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Shooting star */
+.shooting-star {
+  position: absolute;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(to bottom,
+    rgba(0,255,200,0.8),
+    rgba(0,255,200,0.3),
+    transparent);
+  border-radius: 50%;
+  transform: rotate(45deg);
+  animation: shoot 2s linear forwards;
+  filter: drop-shadow(0 0 6px rgba(0,255,200,0.8));
+}
+
+@keyframes shoot {
+  0% {
+    transform: translate(0,0) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-600px, 600px) rotate(45deg);
+    opacity: 0;
+  }
+}

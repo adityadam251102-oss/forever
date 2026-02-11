@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Just a Question ❤️</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+<div class="flower-field"></div>
+<div class="sky"></div>
+
+  <div class="container" id="main">
+    <h1>Hey… I have a small question 🥺</h1>
+
+<img
+  src="capybara.png"
+  alt="Cute capybara"
+  class="capybara"
+/>
+
+    <p class="subtext">
+      The capybara is calm.<br>
+      My heart is not.
+    </p>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes 💖</button>
+      <button id="noBtn">No 🙃</button>
+    </div>
+  </div>
+
+  <div class="container hidden" id="poem">
+    <h1>Then let me say this… 🌸</h1>
+
+    <p class="poem">
+  Mahak,<br><br>
+
+  I don’t want fireworks that fade by morning,<br>
+  Or promises that last a season.<br><br>
+
+  I want slow songs playing in the background,<br>
+  The kind that feel like a reason.<br><br>
+
+  Like dancing in the kitchen at midnight,<br>
+  Or silence that still feels warm.<br><br>
+
+  Like “take me to the moon” kind of dreaming,<br>
+  Or “put your head on my shoulder” through every storm.<br><br>
+
+  I’m not asking you for a day.<br>
+  I’m not asking you for a phase.<br><br>
+
+  I’m asking something quieter…<br>
+  Something steadier.<br><br>
+
+  Will you let me choose you,<br>
+  again and again,<br>
+  not just now —<br>
+  but for all our tomorrows?<br><br>
+
+  Mahak…<br>
+  will you be my forever?
+</p>
+
+    <p class="footer">— Aditya, who already chose you</p>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const main = document.getElementById("main");
+    const poem = document.getElementById("poem");
+
+    let noClicks = 0;
+
+    const noTexts = [
+     "Are you sure? 😶",
+  "Think again… 🥺",
+  "Capybara is watching 👀",
+  "This hurts a little 😔",
+  "Why are you like this 😭",
+  "Okay okay I get it 😩"
+];
+    document.addEventListener("mousemove", (e) => {
+  const rect = noBtn.getBoundingClientRect();
+  const distanceX = e.clientX - (rect.left + rect.width / 2);
+  const distanceY = e.clientY - (rect.top + rect.height / 2);
+
+  const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+  if (distance < 120) {
+    const moveX = (Math.random() - 0.5) * 200;
+    const moveY = (Math.random() - 0.5) * 200;
+    noBtn.style.transform = `translate(${moveX}px, ${moveY}px)`;
+  }
+});
+
+   noBtn.addEventListener("click", () => {
+  noClicks++;
+
+  if (noClicks >= 5) {
+    noBtn.style.opacity = "0";
+    noBtn.style.pointerEvents = "none";
+  }
+
+  noBtn.textContent = noTexts[Math.min(noClicks, noTexts.length - 1)];
+  yesBtn.style.transform = `scale(${1 + noClicks * 0.1})`;
+});
+let starInterval;
+    yesBtn.addEventListener("click", () => {
+        document.getElementById("bgMusic").volume = 0.4;
+document.getElementById("bgMusic").play();
+
+  // Fade out main screen
+  main.classList.add("fade-out");
+
+  // Create floating hearts
+  for (let i = 0; i < 20; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.top = "80vh";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 3000);
+  }
+
+  // After fade, show poem
+  setTimeout(() => {
+    main.classList.add("hidden");
+    poem.classList.remove("hidden");
+    poem.classList.add("fade-in");
+    document.body.classList.add("night");
+    const field = document.querySelector(".flower-field");
+
+for (let i = 0; i < 8; i++) {
+  const stem = document.createElement("div");
+  stem.className = "flower-stem";
+
+  // Random horizontal position
+  stem.style.left = Math.random() * 100 + "vw";
+
+  // Random animation delay
+  stem.style.animationDelay = (Math.random() * 1.5) + "s";
+  stem.style.animation = "grow 5s ease forwards, sway 3s ease-in-out infinite";
+
+  field.appendChild(stem);
+}
+const sky = document.querySelector(".sky");
+
+if (!starInterval) {
+  starInterval = setInterval(() => {
+
+    for (let i = 0; i < 3; i++) {
+
+      const star = document.createElement("div");
+      star.className = "shooting-star";
+
+      star.style.top = Math.random() * 50 + "vh";
+      star.style.left = Math.random() * 100 + "vw";
+
+      sky.appendChild(star);
+
+      setTimeout(() => {
+        star.remove();
+      }, 2000);
+
+    }
+
+  }, 1200);
+}
+
+  }, 800);
+});
+  </script>
+  </body>
+</html>
+
